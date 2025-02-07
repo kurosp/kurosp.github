@@ -217,10 +217,23 @@
 </head>-->
   <!--<body>
 </body>-->
-  <audio autoplay>
-        <source src="https://kurosp.github.io/audio.mp3" type="audio/mpeg">
-      Your Browser Does Not Support The Audio Element.
-      </audio> 
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://kurosp.github.io/audio.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const audio = document.getElementById("bgMusic");
+
+        // Thử phát ngay lập tức
+        audio.play().catch(error => {
+            console.log("Autoplay bị chặn, đợi user click...");
+            document.addEventListener("click", () => {
+                audio.play();
+            }, { once: true });
+        });
+    });
+</script>
   </body>
   <!-- Kết Thúc Phần Hiển Thị -->
 </html>
